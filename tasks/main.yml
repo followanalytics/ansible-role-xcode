@@ -5,7 +5,7 @@
 
 - name: Register xcode_installed
   set_fact:
-    xcode_installed: "{{ xcode_app.stdout.find('Xcode') != -1 }}"
+    xcode_installed: "{{ xcode_app.stdout.find({{ xcode_app_name }}) != -1 }}"
 
 - name: Install Xcode
   block:
@@ -18,7 +18,7 @@
       command: open -FWga "Archive Utility" --args {{ xcode_xip_location }}
 
     - name: Move Xcode To Applications
-      shell: mv {{ xcode_xip_location | dirname }}/Xcode*.app /Applications/
+      shell: "mv {{ xcode_xip_location | dirname }}/Xcode*.app /Applications/{{ xcode_app_name }}"
 
     - name: Accept License Agreement
       command: "{{ xcode_build }} -license accept"
@@ -32,6 +32,9 @@
     - name: Xcode 8 packages
       include: xcode8_packages.yml
       when: xcode_major_version | int == 8
+
+    - name: Switch to xcode installed
+      command: "xcode-select -switch /Applications/{{ xcode_app_name }}/Contents/Developer"
   when: not xcode_installed
 
 - name: Enable Developer Mode
