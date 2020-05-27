@@ -14,9 +14,6 @@
         pkgutil --check-signature {{ xcode_xip_location }} |
         grep \"Status: signed Apple Software\"
 
-#    - name: Install Xcode from XIP file Location
-#      command: open -FWga "Archive Utility" --args {{ xcode_xip_location }}
-
     - name: Install Xcode from XIP file Location
       command: "xip -x {{ xcode_xip_location }}"
 
