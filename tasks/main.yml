@@ -41,6 +41,7 @@
 
     - name: Switch to xcode installed
       command: "xcode-select -switch /Applications/{{ xcode_app_name }}/Contents/Developer"
+      become: yes
   when: not xcode_installed
 
 - name: Enable Developer Mode
