@@ -5,7 +5,7 @@
 
 - name: Register xcode_installed
   set_fact:
-    xcode_installed: "{{ xcode_app.stdout.find({{ xcode_app_name }}) != -1 }}"
+    xcode_installed: "{{ xcode_app.stdout.find('{{ xcode_app_name }}') != -1 }}"
 
 - name: Install Xcode
   block:
