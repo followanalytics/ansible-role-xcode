@@ -20,8 +20,11 @@
     - name: Install Xcode from XIP file Location
       command: "xip -x {{ xcode_xip_location }}"
 
+    - name: Rename Xcode app
+      shell: "mv Xcode.app {{ xcode_app_name }}"
+
     - name: Move Xcode To Applications
-      shell: "mv {{ xcode_xip_location | dirname }}/Xcode*.app /Applications/{{ xcode_app_name }}"
+      shell: "mv {{ xcode_app_name }} /Applications"
 
     - name: Accept License Agreement
       command: "{{ xcode_build }} -license accept"
