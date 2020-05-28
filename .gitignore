@@ -2,3 +2,6 @@
 *.retry
 .vscode
 .DS_Store
+
+.idea/
+.idea/*

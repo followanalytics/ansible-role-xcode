@@ -1,4 +1,9 @@
 xcode_xip_location: /Users/administrator/Downloads/Xcode_9.4.xip
 xcode_major_version: 9
-xcode_build: /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild
-xcode_packages_location: /Applications/Xcode.app/Contents/Resources/Packages
+
+xcode_full_version: 9.4
+xcode_app_name: "Xcode_{{ xcode_full_version }}.app"
+
+xcode_build: "/Applications/{{ xcode_app_name }}/Contents/Developer/usr/bin/xcodebuild"
+xcode_packages_location: "/Applications/{{ xcode_app_name }}/Contents/Resources/Packages"
+
