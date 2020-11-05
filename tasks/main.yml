@@ -24,6 +24,10 @@
       command: "xip -x {{ xcode_xip_location }}"
       become: yes
 
+    - name: Remove before renaming Xcode
+      shell: "rm -rf {{ xcode_app_name }}"
+      become: yes
+
     - name: Rename Xcode app
       shell: "mv Xcode.app {{ xcode_app_name }}"
       become: yes
