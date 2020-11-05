@@ -3,9 +3,15 @@
   register: xcode_app
   changed_when: false
 
+- name: Checking version installed
+  command: xcodebuild -version
+  register: xcode_version_installed
+  changed_when: false
+  ignore_errors: true
+
 - name: Register xcode_installed
   set_fact:
-    xcode_installed: "{{ xcode_app.stdout.find(xcode_app_name) != -1 }}"
+    xcode_installed: "{{ xcode_app.stdout.find(xcode_app_name) != -1 or xcode_version_installed.stdout.find(xcode_full_version) != -1 }}"
 
 - name: Install Xcode
   block:
