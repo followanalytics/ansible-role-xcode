@@ -28,6 +28,10 @@
       shell: "mv Xcode.app {{ xcode_app_name }}"
       become: yes
 
+    - name: Remove before move Xcode To Applications
+      shell: "rm -rf /Applications/{{ xcode_app_name }}"
+      become: yes
+
     - name: Move Xcode To Applications
       shell: "mv {{ xcode_app_name }} /Applications"
       become: yes
